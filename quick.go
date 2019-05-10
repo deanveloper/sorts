@@ -3,7 +3,7 @@ package sorts
 import "sync"
 
 func QuickSort(slice []int) {
-	if len(slice) == 1 {
+	if len(slice) <= 1 {
 		return
 	}
 
@@ -14,7 +14,7 @@ func QuickSort(slice []int) {
 }
 
 func ParallelQuickSort(slice []int, parentWg *sync.WaitGroup) {
-	if len(slice) == 1 {
+	if len(slice) <= 1 {
 		if parentWg != nil {
 			parentWg.Done()
 		}
@@ -42,26 +42,20 @@ func ParallelQuickSort(slice []int, parentWg *sync.WaitGroup) {
 // returns the index of the pivot (which is where they are)
 // divided
 func partition(slice []int) int {
-	var pivot = slice[len(slice)-1]
-	var left, right int
-	for i, v := range slice {
-		if i == len(slice)-1 {
-			continue
-		}
-		if v < pivot {
-			swap(&slice[left+1], &slice[i])
+	if len(slice) <= 1 {
+		return len(slice) - 1
+	}
+
+	left, right := 0, len(slice)-1
+
+	for i := range slice {
+		if slice[i] < slice[right] {
+			slice[i], slice[left] = slice[left], slice[i]
 			left++
-			right++
-		} else {
-			right++
 		}
 	}
-	swap(&slice[left+1], &slice[len(slice)-1])
-	return left + 1
-}
 
-func swap(i, j *int) {
-	temp := *i
-	*i = *j
-	*j = temp
+	slice[left], slice[right] = slice[right], slice[left]
+
+	return left
 }
