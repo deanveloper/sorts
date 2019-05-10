@@ -10,11 +10,12 @@ import (
 var mergeResult []int
 
 func TestMergeSort(t *testing.T) {
-	x := rand.Perm(2000)
+	x := rand.Perm(50)
 	MergeSort(x)
 	for i := range x {
 		if i != x[i] {
-			t.Fatal("sort does not work: expected", i, "but got", x[i])
+			t.Log(x)
+			t.Fatal("sort does not work")
 		}
 	}
 }
