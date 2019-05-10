@@ -1,7 +1,6 @@
 # sorts
 
-Just a bunch of sorts written in Go. This is for educational purposes, use the
-[`"sort"`](https://godoc.org/sort) package if you actually want to sort your data quickly.
+Just a bunch of sorts written in Go. This is for educational purposes, use the [`"sort"`](https://godoc.org/sort) package if you actually want to sort your data quickly.
 
 <details><summary>Benchmarks as of 41fb03</summary>
 <pre>
