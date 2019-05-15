@@ -4,6 +4,11 @@ import (
 	"sync"
 )
 
+// MergeSort splits a slice into a left and right slice, then
+// continues splitting those two slices recursively until the slices
+// are made of single elements. Then it merges all of these slices
+// so that all resulting merged slices are sorted from least to greatest.
+// When the final two slices are merged, the entire slice is then sorted.
 func MergeSort(slice []int) {
 	if len(slice) <= 1 {
 		return
@@ -28,6 +33,8 @@ func MergeSort(slice []int) {
 	}
 }
 
+// ParallelMergeSort works the same way as MergeSort, however when
+// splitting up the slices, it is able to do so in parallel.
 func ParallelMergeSort(slice []int, parentWg *sync.WaitGroup) {
 	if len(slice) <= 1 {
 		if parentWg != nil {

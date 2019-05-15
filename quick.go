@@ -2,6 +2,11 @@ package sorts
 
 import "sync"
 
+// QuickSort sorts by picking a pivot, then placing
+// all values less than the pivot on the left side,
+// and all values greater than the pivot to the right side.
+// this process is repeated on each "partition" until the
+// entire array is sorted.
 func QuickSort(slice []int) {
 	if len(slice) <= 1 {
 		return
@@ -13,6 +18,8 @@ func QuickSort(slice []int) {
 	QuickSort(slice[p:])
 }
 
+// ParallelQuickSort works the same way as QuickSort, however after
+// each partition, it continues the recursive partition in parallel.
 func ParallelQuickSort(slice []int, parentWg *sync.WaitGroup) {
 	if len(slice) <= 1 {
 		if parentWg != nil {
