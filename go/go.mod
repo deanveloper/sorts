@@ -1,3 +1,3 @@
-module github.com/deanveloper/sorts
+module github.com/deanveloper/sorts/go
 
 go 1.12
